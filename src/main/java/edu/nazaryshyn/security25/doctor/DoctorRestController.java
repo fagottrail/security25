@@ -44,4 +44,19 @@ public class DoctorRestController {
     public Doctor update(@RequestBody Doctor doctor) {
         return service.update(doctor);
     }
+
+    @GetMapping("/user")
+    public String helloUser() {
+        return "You are common user!";
+    }
+
+    @GetMapping("/admin")
+    public String helloAdmin() {
+        return "You are a god of this app, you are admin)";
+    }
+
+    @GetMapping("/unauthenticated")
+    public String helloUnauthenticated() {
+        return "Who are you man?";
+    }
 }
