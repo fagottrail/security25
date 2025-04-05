@@ -9,10 +9,13 @@ package edu.nazaryshyn.security25.config;
 */
 
 import org.springframework.aop.Advisor;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -26,11 +29,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
-
-    public static Advisor preAuthorizeMethodInterceptor () {
-        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize();
-    }
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/index.html").permitAll()
 //                                .requestMatchers("/api/v1/doctors/admin").hasAnyRole("ADMIN", "SUPERADMIN")
-//                                .requestMatchers("/api/v1/doctors/unauthenticated").permitAll()
+                                .requestMatchers("/api/v1/doctors/anyone").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 
