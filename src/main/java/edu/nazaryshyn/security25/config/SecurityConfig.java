@@ -1,4 +1,4 @@
-package edu.nazaryshyn.security25;
+package edu.nazaryshyn.security25.config;
 
 /*
   @author     toha0

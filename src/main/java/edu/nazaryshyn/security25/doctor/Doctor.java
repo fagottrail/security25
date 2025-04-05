@@ -18,7 +18,7 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Builder
 @ToString
-public class Doctor {
+public class Doctor extends AuditMetaData{
     @Id
     private String id;
     private String name;
