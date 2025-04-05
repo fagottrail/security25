@@ -8,8 +8,10 @@ package edu.nazaryshyn.security25.config;
   @since 05.04.2025 - 18.34
 */
 
+import org.springframework.aop.Advisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +28,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    public static Advisor preAuthorizeMethodInterceptor () {
+        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize();
+    }
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,8 +42,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/index.html").permitAll()
-                                .requestMatchers("/api/v1/doctors/admin").hasAnyRole("ADMIN", "SUPERADMIN")
-                                .requestMatchers("/api/v1/doctors/unauthenticated").permitAll()
+//                                .requestMatchers("/api/v1/doctors/admin").hasAnyRole("ADMIN", "SUPERADMIN")
+//                                .requestMatchers("/api/v1/doctors/unauthenticated").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 

@@ -9,6 +9,7 @@ package edu.nazaryshyn.security25.doctor;
 */
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,13 +47,21 @@ public class DoctorRestController {
     }
 
     @GetMapping("/user")
+    @PreAuthorize("hasRole('USER')")
     public String helloUser() {
         return "You are common user or higher!";
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPERADMIN')")
     public String helloAdmin() {
         return "You are a god of this app, you are admin)";
+    }
+
+    @GetMapping("/superadmin")
+    @PreAuthorize("hasRole('SUPERADMIN')")
+    public String helloSuperadmin() {
+        return "You are a god of a god of this app, you are superadmin)";
     }
 
     @GetMapping("/unauthenticated")
