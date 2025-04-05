@@ -47,7 +47,7 @@ public class DoctorRestController {
 
     @GetMapping("/user")
     public String helloUser() {
-        return "You are common user!";
+        return "You are common user or higher!";
     }
 
     @GetMapping("/admin")
