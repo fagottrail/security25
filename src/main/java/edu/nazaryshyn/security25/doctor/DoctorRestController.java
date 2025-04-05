@@ -46,26 +46,26 @@ public class DoctorRestController {
         return service.update(doctor);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/only-user")
     @PreAuthorize("hasRole('USER')")
     public String helloUser() {
-        return "You are common user or higher!";
+        return "You are common user";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/superadmin-and-admin")
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPERADMIN')")
     public String helloAdmin() {
-        return "You are a god of this app, you are admin)";
+        return "You are superadmin or admin";
     }
 
-    @GetMapping("/superadmin")
+    @GetMapping("/only-superadmin")
     @PreAuthorize("hasRole('SUPERADMIN')")
     public String helloSuperadmin() {
-        return "You are a god of a god of this app, you are superadmin)";
+        return "You are superadmin)";
     }
 
-    @GetMapping("/unauthenticated")
+    @GetMapping("/anyone")
     public String helloUnauthenticated() {
-        return "Who are you man?";
+        return "You can be anyone";
     }
 }
