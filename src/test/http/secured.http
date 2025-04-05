@@ -1,0 +1,48 @@
+### GET ALL DOCTORS
+GET http://localhost:8080/api/v1/doctors
+Authorization: Basic admin admin
+
+### GET ONE DOCTOR
+GET http://localhost:8080/api/v1/doctors/3
+Authorization: Basic admin admin
+
+### DELETE DOCTOR
+DELETE http://localhost:8080/api/v1/doctors/3
+Authorization: Basic admin admin
+
+### CREATE DOCTOR
+POST http://localhost:8080/api/v1/doctors
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "name": "Artur",
+  "phone": "553422346",
+  "specialty": "Cardiologist",
+  "experienceYears": 6
+}
+
+### UPDATE DOCTOR
+PUT http://localhost:8080/api/v1/doctors
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": "2",
+  "name": "Mykola",
+  "phone": "34656354",
+  "specialty": "Oncologist",
+  "experienceYears": 22
+}
+
+### CHECK ADMIN
+GET http://localhost:8080/api/v1/doctors/admin
+Authorization: Basic admin admin
+
+### CHECK USER
+GET http://localhost:8080/api/v1/doctors/user
+Authorization: Basic admin admin
+
+### CHECK UNAUTHENTICATED
+GET http://localhost:8080/api/v1/doctors/unauthenticated
+Authorization: Basic admin admin
